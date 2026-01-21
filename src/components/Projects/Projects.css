@@ -1,0 +1,811 @@
+/* Projects.css */
+:root {
+  /* Light Mode Colors */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --bg-tertiary: #e9ecef;
+  --bg-card: #ffffff;
+  --text-primary: #1a1a1a;
+  --text-secondary: #4a5568;
+  --text-muted: #718096;
+  --primary-color: #3b82f6;
+  --primary-dark: #2563eb;
+  --secondary-color: #8b5cf6;
+  --success-color: #10b981;
+  --warning-color: #f59e0b;
+  --error-color: #ef4444;
+  --border-color: #e2e8f0;
+  --border-light: #edf2f7;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="dark"] {
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-tertiary: #334155;
+  --bg-card: #1e293b;
+  --text-primary: #f1f5f9;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --border-color: #334155;
+  --border-light: #475569;
+}
+
+.projects {
+  background: var(--bg-secondary);
+  position: relative;
+  padding: 6rem 0;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4rem;
+  position: relative;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  white-space: nowrap;
+  font-weight: 700;
+}
+
+.title-number {
+  color: var(--primary-color);
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.section-line {
+  height: 1px;
+  background: var(--border-color);
+  flex-grow: 1;
+  margin-left: 2rem;
+}
+
+.projects-filter {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+  animation: fadeInUp 0.8s ease;
+}
+
+.filter-btn {
+  background: var(--bg-card);
+  border: 2px solid var(--border-color);
+  color: var(--text-secondary);
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-lg);
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  font-family: inherit;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+}
+
+.filter-btn:hover {
+  background: var(--bg-tertiary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary-color);
+}
+
+.filter-btn.active {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+  box-shadow: var(--shadow-md);
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.project-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  border: 2px solid var(--border-color);
+  transition: var(--transition);
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.8s ease forwards;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--primary-color);
+}
+
+.project-image {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.image-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.project-number {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.2);
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  letter-spacing: -2px;
+}
+
+.project-category-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  color: white;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.project-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.project-card:hover .project-overlay {
+  opacity: 1;
+}
+
+.project-actions {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.action-btn {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  text-decoration: none;
+  font-family: inherit;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.action-btn.view-btn {
+  background: var(--primary-color);
+  color: white;
+}
+
+.action-btn.github-btn {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 2px solid var(--border-color);
+}
+
+.action-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.action-btn.view-btn:hover {
+  background: var(--primary-dark);
+}
+
+.action-btn.github-btn:hover {
+  background: var(--bg-tertiary);
+  border-color: var(--primary-color);
+}
+
+.project-status {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  color: white;
+  padding: 0.35rem 1rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  letter-spacing: 0.5px;
+}
+
+.project-status.completed {
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.15);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.project-status.in-progress {
+  color: #f59e0b;
+  background: rgba(245, 158, 11, 0.15);
+  border-color: rgba(245, 158, 11, 0.3);
+}
+
+.project-content {
+  padding: 1.75rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-title {
+  font-size: 1.4rem;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.project-description {
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+  font-size: 0.95rem;
+  flex-grow: 1;
+}
+
+.project-technologies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+
+.tech-tag {
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  padding: 0.35rem 0.75rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: 1px solid var(--border-light);
+  font-family: 'SF Mono', 'Fira Code', monospace;
+}
+
+.tech-tag.more-tech {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+  font-weight: 700;
+}
+
+.projects-cta {
+  text-align: center;
+  animation: fadeInUp 0.8s ease 0.3s both;
+  padding: 2.5rem;
+  background: var(--bg-card);
+  border-radius: var(--radius-xl);
+  border: 2px solid var(--border-color);
+  margin-top: 3rem;
+}
+
+.projects-cta p {
+  font-size: 1.2rem;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.9rem 2.5rem;
+  border-radius: var(--radius-lg);
+  font-weight: 600;
+  text-decoration: none;
+  transition: var(--transition);
+  font-family: inherit;
+  gap: 0.5rem;
+  border: 2px solid transparent;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+}
+
+.btn-primary {
+  background: var(--primary-color);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 2rem;
+  backdrop-filter: blur(10px);
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal-content {
+  background: var(--bg-primary);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-2xl);
+  border: 2px solid var(--border-color);
+  max-width: 800px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  animation: slideInUp 0.4s ease;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: var(--bg-secondary);
+  border: 2px solid var(--border-color);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: var(--text-secondary);
+  transition: var(--transition);
+  z-index: 10;
+  font-weight: 300;
+}
+
+.modal-close:hover {
+  background: var(--error-color);
+  color: white;
+  transform: rotate(90deg);
+  border-color: var(--error-color);
+}
+
+.modal-header {
+  padding: 2.5rem 2.5rem 1rem;
+  border-bottom: 2px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.modal-header h2 {
+  font-size: 2rem;
+  color: var(--text-primary);
+  font-weight: 700;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.project-status-badge {
+  color: white;
+  padding: 0.5rem 1.2rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  letter-spacing: 0.5px;
+}
+
+.project-status-badge.completed {
+  background: linear-gradient(135deg, #10b981, #059669);
+}
+
+.project-status-badge.in-progress {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+.modal-body {
+  padding: 2rem 2.5rem;
+}
+
+.modal-image {
+  margin-bottom: 2rem;
+}
+
+.image-placeholder.large {
+  height: 250px;
+  border-radius: var(--radius-lg);
+  position: relative;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.modal-project-number {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  font-size: 2.5rem;
+  font-weight: 800;
+  opacity: 0.3;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+}
+
+.modal-category-tag {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.modal-details {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.detail-section h3 {
+  font-size: 1.4rem;
+  color: var(--text-primary);
+  margin-bottom: 1.2rem;
+  font-weight: 700;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.detail-section h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background: var(--primary-color);
+  border-radius: 2px;
+}
+
+.detail-section p {
+  color: var(--text-secondary);
+  line-height: 1.7;
+  font-size: 1rem;
+}
+
+.features-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 0.8rem;
+}
+
+.features-list li {
+  color: var(--text-secondary);
+  padding-left: 1.8rem;
+  position: relative;
+  line-height: 1.6;
+}
+
+.features-list li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--primary-color);
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.technologies-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.technology-item {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-lg);
+  font-weight: 600;
+  border: 1px solid var(--border-light);
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  transition: var(--transition);
+}
+
+.technology-item:hover {
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.modal-footer {
+  padding: 1.5rem 2.5rem 2.5rem;
+  border-top: 2px solid var(--border-color);
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Add these styles to your existing Projects.css file */
+
+/* Update category-specific styles */
+.project-card[data-category="fullstack"] .project-category-badge {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(16, 185, 129, 0.3));
+}
+
+.project-card[data-category="mern"] .project-category-badge {
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.3), rgba(14, 165, 233, 0.3));
+}
+
+.project-card[data-category="ai"] .project-category-badge {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(236, 72, 153, 0.3));
+}
+
+/* For modal category tags */
+.modal-category-tag[data-category="fullstack"] {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(16, 185, 129, 0.3));
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.modal-category-tag[data-category="mern"] {
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.3), rgba(14, 165, 233, 0.3));
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.modal-category-tag[data-category="ai"] {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(236, 72, 153, 0.3));
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Adjust filter buttons spacing if needed */
+.projects-filter {
+  gap: 0.8rem;
+}
+
+.filter-btn {
+  min-width: 120px;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .projects {
+    padding: 4rem 0;
+  }
+
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .section-line {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 1rem;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .project-card {
+    max-width: 100%;
+  }
+
+  .modal-content {
+    margin: 1rem;
+    max-height: 95vh;
+  }
+
+  .modal-header {
+    padding: 2rem 1.5rem 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .modal-header h2 {
+    font-size: 1.7rem;
+  }
+
+  .modal-body {
+    padding: 1.5rem;
+  }
+
+  .modal-footer {
+    padding: 1.5rem;
+    justify-content: center;
+  }
+
+  .project-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .action-btn {
+    text-align: center;
+  }
+
+  .features-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  .projects-filter {
+    gap: 0.5rem;
+  }
+
+  .filter-btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+
+  .project-content {
+    padding: 1.5rem;
+  }
+
+  .project-image {
+    height: 180px;
+  }
+
+  .modal-overlay {
+    padding: 1rem;
+  }
+
+  .modal-header h2 {
+    font-size: 1.5rem;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 0.8rem 1.5rem;
+  }
+}
+
+/* Theme Toggle */
+.theme-toggle {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  z-index: 1000;
+}
+
+.theme-toggle-btn {
+  background: var(--bg-card);
+  border: 2px solid var(--border-color);
+  color: var(--text-primary);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+  font-size: 1.2rem;
+}
+
+.theme-toggle-btn:hover {
+  border-color: var(--primary-color);
+  transform: rotate(15deg);
+}
